@@ -108,3 +108,16 @@ body {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
+/* Jeongin Practice Start */
+li {
+  float: left;
+  display: inline;
+}
+
+a {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+}
+/* Jeongin Practice End */
