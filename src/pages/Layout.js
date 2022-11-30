@@ -16,10 +16,10 @@ const Layout = () => {
                         <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/blogs">Blog</Link>
+                        <Link className="nav-link" to="/blogs">Book Marks</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/contact">Contact</Link>
+                        <Link className="nav-link" to="/contact">Top University</Link>
                     </li>
                 </ul>
                 </div>
