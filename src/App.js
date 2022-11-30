@@ -1,107 +1,22 @@
-// import logo from './logo.svg';
-import { useEffect, useState } from 'react';
-import './App.css';
-import CardComponent from './components/cardComponent'
-import getList from './services/list';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Blogs from "./pages/Blogs";
+import Contact from "./pages/Contact";
+import NoPage from "./pages/NoPage";
 
 
-function App() {
-
-  const options = [
-    {value: '', text: 'Please Select Country'},
-    {value: 'canada', text: 'Canada'},
-    {value: 'bangladesh', text: 'Bangladesh'},
-    {value: 'nepal', text: 'Nepal'},
-    {value: 'japan', text: 'Japan'},
-
-  ];
-
-  const [show, setShow] = useState(false);
-  const [list, setList] = useState([]);
-  const [cardNum, setCardNum] = useState(11);
-  const [selected, setSelected] = useState(options[0].value);
-
-  
-  useEffect(() => {
-    // console.log(show);
-
-    if(show == true){
-
-      let mounted = true;
-      getList(selected)
-        .then(items => {
-          if(mounted) {
-            setList(items)
-          }
-        })
-      return () => mounted = false;
-    }
-  })
-
-
-  useEffect(() => {
-    // console.log(show);
-
-    if(show == true) {
-
-      let effect = true;
-      if(effect){
-          let cards = document.querySelectorAll('.column');
-          for (let i = 0; i < cards.length ; i++) {
-            if(show === false){
-              cards[i].style.display = "none";
-            }
-            else if(i > cardNum && show === true){
-              cards[i].style.display = "none";
-            } else{
-              cards[i].style.display = "block";
-            }
-          }
-      }
-      return () => {
-        effect = false;
-      };
-    }
-  });
-
-  const handleChange = event => {
-    // console.log(event.target.value);
-    setSelected(event.target.value);
-    if(event.target.value === ''){
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-  };
-
-  return (
-    <div className="row">
-
-      <label htmlFor="cars">Choose a country:</label>
-
-      <select value={selected} onChange={handleChange}>
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.text}
-          </option>
-        ))}
-      </select>
-
-      <button onClick={() => setCardNum(cardNum + 1)}>Add card</button>
-      <button onClick={() => setCardNum(cardNum - 1)}>Remove card</button>
-
-      <h1>My university list</h1>
-
-      {
-        show ? 
-        list.map((elem, index) => {
-          return(
-            <CardComponent key={index} data={elem} />
-          );
-        }) : <></>
-      }
-    </div>
-  );
+export default function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="blogs" element={<Blogs />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="*" element={<NoPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    );
 }
-
-export default App;

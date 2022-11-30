@@ -4,10 +4,15 @@ const CardComponent = (props) => {
     return(
         <div className="column" >
             <div className="card">
-            <img className="img-css" src="https://randomuser.me/api/portraits/men/75.jpg" alt="place-holder-image" />
-            <h3>{props.data.name}</h3>
-            <a href={props.data.web_pages[0]}>{props.data.domains[0]}</a>
-            <p>Some text</p>
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <img src="..." class="card-img-top" alt="..." />
+                <div className="card-body">
+                    <h5 className="card-title">{props.data.name}</h5>
+                    <a href={props.data.web_pages[0]}>{props.data.domains[0]}</a>
+                </div>
             </div>
         </div>
     )
