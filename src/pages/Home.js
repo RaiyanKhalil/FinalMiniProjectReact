@@ -65,20 +65,38 @@ function App() {
     }
   };
 
+
+  // useEffect(() => {
+  //   document.querySelectorAll('.btn-close').forEach((elem , index) => {
+  //     elem.addEventListener('click', () => {
+  //         console.log(elem);
+  //     })
+  //   })
+  // })
+
+  // document.querySelectorAll('.btn-close').forEach((elem , index) => {
+  //   elem.addEventListener('click', () => {
+  //       console.log(elem);
+  //   })
+  // })
+
   return (
-    <div className="row">
-      <label htmlFor="cars">Choose a country:</label>
+    <div className="container">
+        <section>
 
-      <select value={selected} onChange={handleChange}>
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.text}
-          </option>
-        ))}
-      </select>
+            <label htmlFor="cars">Choose a country:</label>
 
-      <button onClick={() => setCardNum(cardNum + 1)}>Add card</button>
-      <button onClick={() => setCardNum(cardNum - 1)}>Remove card</button>
+            <select className='form-select' aria-label="Default select example" value={selected} onChange={handleChange}>
+                {options.map(option => (
+                <option key={option.value} value={option.value}>
+                    {option.text}
+                </option>
+                ))}
+            </select>
+
+            <button onClick={() => setCardNum(cardNum + 1)}>Add card</button>
+            <button onClick={() => setCardNum(cardNum - 1)}>Remove card</button>
+        </section>
 
       <h1>My university list</h1>
 
