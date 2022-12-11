@@ -5,7 +5,7 @@ const Layout = () => {
     <>
         <nav className="container navbar navbar-expand-lg bg-dark">
             <div className="container-fluid">
-                <Link className="nav-link active text-bg-dark" aria-current="page" to="/">Navbar</Link>
+                {/* <Link className="nav-link active text-bg-dark" aria-current="page" to="/">Navbar</Link> */}
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -16,10 +16,10 @@ const Layout = () => {
                         <Link className="nav-link active text-bg-dark" aria-current="page" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-bg-dark" to="/blogs">Blog</Link>
+                        <Link className="nav-link text-bg-dark" to="/rick&morty">Rick & Morty</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-bg-dark" to="/contact">Contact</Link>
+                        <Link className="nav-link text-bg-dark" to="/team">Team Members</Link>
                     </li>
                 </ul>
                 </div>
