@@ -6,44 +6,33 @@ import getList from '../services/list';
 
 function App() {
 
-  const options = [
-    {value: '', text: 'Please Select Country'},
-    {value: 'canada', text: 'Canada'},
-    {value: 'bangladesh', text: 'Bangladesh'},
-    {value: 'nepal', text: 'Nepal'},
-    {value: 'japan', text: 'Japan'},
-  ];
 
-  const [show, setShow] = useState(false);
   const [list, setList] = useState([]);
   const [cardNum, setCardNum] = useState(11);
-  const [selected, setSelected] = useState(options[0].value);
 
   
   useEffect(() => {
-    if(show === true){
       let mounted = true;
-      getList(selected)
+      getList()
         .then(items => {
           if(mounted) {
             setList(items)
+            // console.log(items)
           }
         })
       return () => mounted = false;
-    }
-  })
+  },[])
 
 
   useEffect(() => {
-    if(show === true) {
       let effect = true;
       if(effect){
-          let cards = document.querySelectorAll('.column');
+          let cards = document.querySelectorAll('.col-md-4');
           for (let i = 0; i < cards.length ; i++) {
-            if(show === false){
-              cards[i].style.display = "none";
-            }
-            else if(i > cardNum && show === true){
+            // if(show === false){
+              // cards[i].style.display = "none";
+            // }
+            if(i > cardNum){
               cards[i].style.display = "none";
             } else{
               cards[i].style.display = "block";
@@ -53,17 +42,16 @@ function App() {
       return () => {
         effect = false;
       };
-    }
   });
 
-  const handleChange = event => {
-    setSelected(event.target.value);
-    if(event.target.value === ''){
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-  };
+  // const handleChange = event => {
+  //   setSelected(event.target.value);
+  //   if(event.target.value === ''){
+  //     setShow(false);
+  //   } else {
+  //     setShow(true);
+  //   }
+  // };
 
 
   // useEffect(() => {
@@ -81,34 +69,19 @@ function App() {
   // })
 
   return (
-    <div className="container">
-        <section>
 
-            <label htmlFor="cars">Choose a country:</label>
-
-            <select className='form-select' aria-label="Default select example" value={selected} onChange={handleChange}>
-                {options.map(option => (
-                <option key={option.value} value={option.value}>
-                    {option.text}
-                </option>
-                ))}
-            </select>
-
-            <button onClick={() => setCardNum(cardNum + 1)}>Add card</button>
-            <button onClick={() => setCardNum(cardNum - 1)}>Remove card</button>
-        </section>
-
-      <h1>My university list</h1>
-
-      {
-        show ? 
-        list.map((elem, index) => {
-          return(
-            <CardComponent key={index} data={elem} />
-          );
-        }) : <></>
-      }
-    </div>
+      <div className="container">
+          <div class="row row-cols-2">
+            <button className='add-btn btn btn-light col-12 col-md-6 col-lg-6' onClick={() => setCardNum(cardNum + 1)}>Add Card</button>
+            {
+              list.map((elem, index) => {
+                return (
+                  <CardComponent key={index} data={elem} />
+                )
+              })
+            }
+          </div>
+      </div> 
   );
 }
 
